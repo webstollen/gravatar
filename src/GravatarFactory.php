@@ -11,7 +11,7 @@ class GravatarFactory
 {
     public function __invoke(ContainerInterface $container)
     {
-        $http = $container->get(Client::class) ?? new Client;
+        $http = $container->has(Client::class) ? $container->get(Client::class) : new Client;
         return new Gravatar($http);
     }
 }
